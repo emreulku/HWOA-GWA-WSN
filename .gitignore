@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+*.egg-info/
+
+# Büyük veri dosyaları — Zenodo'da yayınlanacak
+results_raw.pkl
+checkpoints/
+*.pkl
+
+# Geçici dosyalar
+progress_live.csv
+*.tmp
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

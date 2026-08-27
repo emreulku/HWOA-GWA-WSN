@@ -1,0 +1,46 @@
+{
+  "MAX_NFE": 6250,
+  "POP_SIZE": 25,
+  "BASE_ITER": 250,
+  "ENV_SEEDS": [
+    42,
+    17,
+    99
+  ],
+  "N_TRIALS": 30,
+  "ALGOS": [
+    "Random",
+    "PSO",
+    "cACO",
+    "mWOA",
+    "mGWA",
+    "CSA",
+    "HWOA-GWA"
+  ],
+  "SCENARIOS": [
+    {
+      "tag": "S1",
+      "n_sensors": 100,
+      "n_targets": 75,
+      "label": "S1: 100 sensör / 75 hedef"
+    },
+    {
+      "tag": "S2",
+      "n_sensors": 50,
+      "n_targets": 75,
+      "label": "S2: 50 sensör / 75 hedef"
+    },
+    {
+      "tag": "S3",
+      "n_sensors": 200,
+      "n_targets": 120,
+      "label": "S3: 200 sensör / 120 hedef"
+    }
+  ],
+  "ABLATION_MODES": [
+    "full",
+    "spiral",
+    "hier"
+  ],
+  "OUTDIR": "/content/WSN_Experiments_Final"
+}
