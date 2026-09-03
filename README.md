@@ -3,12 +3,6 @@
 This repository contains the source code, experimental results, and
 figures accompanying the paper:
 
-> **Adaptive Spiral–Hierarchical Operator Switching for Target Coverage
-> Optimization in Wireless Sensor Networks**  
-> *[Author names], Cluster Computing, [Year]*
-
----
-
 ## Overview
 
 HWOA-GWA is a hybrid metaheuristic that coordinates two complementary
