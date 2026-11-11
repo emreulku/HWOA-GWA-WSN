@@ -1,0 +1,152 @@
+{
+  "E4": {
+    "stored_after_kill": 1,
+    "sessions": 3,
+    "measured": 6,
+    "warmups": 3,
+    "every_measured_run_preceded_by_same_session_warmup": true,
+    "detail": [
+      {
+        "key": [
+          "E4",
+          "PSO",
+          "S1",
+          42,
+          0,
+          "measured"
+        ],
+        "session": "35f3e9f0",
+        "warmed_before": true
+      },
+      {
+        "key": [
+          "E4",
+          "PSO",
+          "S1",
+          42,
+          1,
+          "measured"
+        ],
+        "session": "177cf6ea",
+        "warmed_before": true
+      },
+      {
+        "key": [
+          "E4",
+          "PSO",
+          "S1",
+          42,
+          2,
+          "measured"
+        ],
+        "session": "177cf6ea",
+        "warmed_before": true
+      },
+      {
+        "key": [
+          "E4",
+          "FULL",
+          "S1",
+          42,
+          0,
+          "measured"
+        ],
+        "session": "73a8fcf6",
+        "warmed_before": true
+      },
+      {
+        "key": [
+          "E4",
+          "FULL",
+          "S1",
+          42,
+          1,
+          "measured"
+        ],
+        "session": "73a8fcf6",
+        "warmed_before": true
+      },
+      {
+        "key": [
+          "E4",
+          "FULL",
+          "S1",
+          42,
+          2,
+          "measured"
+        ],
+        "session": "73a8fcf6",
+        "warmed_before": true
+      }
+    ],
+    "blas_forced": [
+      {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      }
+    ],
+    "blas_original": [
+      {
+        "OMP_NUM_THREADS": "4",
+        "MKL_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "4"
+      },
+      {
+        "OMP_NUM_THREADS": "4",
+        "MKL_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "4"
+      },
+      {
+        "OMP_NUM_THREADS": "4",
+        "MKL_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "4"
+      }
+    ],
+    "all_single_threaded": [
+      true,
+      true,
+      true
+    ],
+    "double_export_hashes_valid": true,
+    "outputs": [
+      "E4_histories.npz",
+      "E4_runs.csv",
+      "E4_sessions.json",
+      "E4_system_info.json"
+    ]
+  },
+  "E1": {
+    "n": 18,
+    "columns_ok": true,
+    "header": [
+      "smoke",
+      "exp",
+      "method",
+      "sc",
+      "env_seed",
+      "trial",
+      "role",
+      "session"
+    ],
+    "double_export_hashes_valid": true,
+    "outputs": [
+      "E1_diagnostics.npz",
+      "E1_histories.npz",
+      "E1_runs.csv",
+      "E1_sessions.json"
+    ],
+    "stored_equals_direct": true
+  },
+  "passed": true
+}

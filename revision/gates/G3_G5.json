@@ -1,0 +1,138 @@
+{
+  "passed": {
+    "G3": true,
+    "G4": true,
+    "G5": true
+  },
+  "G3": {
+    "observer_neutrality_vs_G0": {
+      "runs": 720,
+      "failures": 0
+    },
+    "internal_consistency_orig": {
+      "label": "orig_obs",
+      "runs": 720,
+      "failures": 0,
+      "max_abs_diff": 0.0
+    },
+    "internal_consistency_new": {
+      "label": "new_all",
+      "runs": 1530,
+      "failures": 0,
+      "max_abs_diff": 0.0
+    },
+    "new_vs_orig": {
+      "label": "new default vs original (FULL S1-S3, SPIRAL S1, HIER S1)",
+      "compared": 450,
+      "failures": 0,
+      "fail_detail": [],
+      "max_abs_diff": {
+        "coverage": 0.0,
+        "disp": 0.0,
+        "hist_raw": 0.0
+      },
+      "exactly_equal": {
+        "coverage": "450",
+        "disp": 450
+      }
+    },
+    "hier_vs_mgwa": {
+      "label": "new HIER vs original mGWA (S1-S3)",
+      "compared": 270,
+      "failures": 0,
+      "fail_detail": [],
+      "max_abs_diff": {
+        "coverage": 0.0,
+        "disp": 0.0,
+        "hist_raw": 0.0
+      },
+      "exactly_equal": {
+        "coverage": "270",
+        "disp": 270
+      }
+    }
+  },
+  "G4": {
+    "diag_on_vs_off": {
+      "label": "diagnostics on vs off (630)",
+      "compared": 630,
+      "failures": 0,
+      "fail_detail": [],
+      "max_abs_diff": {
+        "coverage": 0.0,
+        "disp": 0.0,
+        "hist_raw": 0.0
+      },
+      "exactly_equal": {
+        "coverage": "630",
+        "disp": 630
+      }
+    }
+  },
+  "G5": {
+    "param_vs_default": {
+      "label": "G(0.8,0.2) vs default FULL (270)",
+      "compared": 270,
+      "failures": 0,
+      "fail_detail": [],
+      "max_abs_diff": {
+        "coverage": 0.0,
+        "disp": 0.0,
+        "hist_raw": 0.0
+      },
+      "exactly_equal": {
+        "coverage": "270",
+        "disp": 270
+      }
+    }
+  },
+  "manifest": {
+    "protocol": "v0.4",
+    "note": "Gate runs are used only for code verification, not performance analysis. Zero differences here mean that the same algorithm with the same seeds produced identical outputs (code equivalence); they say nothing about performance equality between methods.",
+    "run_set_fingerprints": {
+      "orig_obs": "f15f67ceb8f05e6a250c2cdff0fba19c7170bf327c2812aec7b08bb1088b5507",
+      "new_off": "324e3b1613119f4e0ac3cce766c321dd1e5592240915696e0f9249c7092ede64",
+      "new_on": "15cdc9a98615e0d864d3e8dc38d3a09ef4a1c10d1b3fc0026494d640c8b0bfb1",
+      "new_param": "347a38baa420530de72331b1c8e96c39c7daebe8787b095a331fda4fe40cc967"
+    },
+    "zip_sha256": "28965848c11fe61dc15a2559cdf8c141d68d84dc4a53104f3856fe24b84d8f02",
+    "reference_csv_sha256": "5960005a4d6d3f76f6ef9e4d3921b79b8c751e940af571a6bbaf86df783095d7",
+    "changed_files": [
+      "algorithms/hwoa_gwa.py"
+    ],
+    "added_files": [
+      "algorithms/hwoa_gwa_nopb.py"
+    ],
+    "extra_files": [],
+    "new_tree_hashes": {
+      "algorithms/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "algorithms/aco.py": "a1ef1a3cddaa6efd9d4317fa56c435aae3354b51500ca7d01eac9ad542726ebf",
+      "algorithms/csa.py": "bc1308b5a3416c51b73b41bf19f98f39a9251a85498efc1c026c6d49086c5c14",
+      "algorithms/gwa.py": "e12fc4145d0b916ae65ff3589d66fc3b70a4d179667cf021367bcc27dc8719e5",
+      "algorithms/hwoa_gwa.py": "675fec6cf1a597d598e83d402dd446bd1813d7fc140921aca3e1e4fbac7c20e1",
+      "algorithms/hwoa_gwa_nopb.py": "1860194df992c59d80862a79fb9122af782cf32fe804a9b444fab3e837e2a8f6",
+      "algorithms/hwsa_gwa.py": "2aeafb21e9f348a5ae63609f4b8383a7f51dcda621be3d9116f66c37be655843",
+      "algorithms/pso.py": "9784b800a4da743bd233bb4161f1f8a8db9fab81ec3f28017832b00c43948df3",
+      "algorithms/random_baseline.py": "2b2c92eea01b7ed68f07d9027e5dea86f7d32c77dc54951728c715b0bdb74cff",
+      "algorithms/woa.py": "a5ac47c00ea83c15ace776d6cc0615eefc77a52331dbe6ad48b652d300779c4f",
+      "algorithms/wsa.py": "139fe6a97117e21ecee3d8162d63be6f1784f39a19536d258824d3db4cb23652",
+      "environment.py": "4b846c1704aa261f034f2644e227fe685e7d70f27cf9eb1e1fafe7b5b31d2b23",
+      "statistical_experiment.py": "aaddd7170d7aebf606917363225baa3ce7882b360ef96dd0300bb0d794c0bf6c"
+    },
+    "executions": {
+      "orig_obs": 720,
+      "new_off": 630,
+      "new_on": 630,
+      "new_param": 270
+    },
+    "total_executions": 2250,
+    "reuse": "new HIER S1 compared with both original HIER S1 and original mGWA S1; observer neutrality uses the G0 reference CSV (no extra runs)",
+    "versions": {
+      "python": "3.13.18",
+      "numpy": "2.5.3",
+      "pandas": "3.0.5"
+    },
+    "workers": 2,
+    "wall_time_s": 4014
+  }
+}

@@ -25,9 +25,18 @@ Ablation modu:
   mode="full"    → tam hibrit (hem spiral hem hiyerarşi)
   mode="spiral"  → sadece mWOA spirali, alfa liderine yönelik
   mode="hier"    → sadece GWA hiyerarşisi, doğrusal çekim
+
+Revizyon (protokol v0.3, C1/C3):
+  - p_init / p_end runner tarafından geçirilebilir (varsayılanlar değişmedi).
+  - İsteğe bağlı `diag` kaydedici. diag=None iken kod yolu gönderilmiş
+    sürümle (3e15fcb) aynıdır. Kaydedici yalnızca algoritmanın zaten
+    hesapladığı dizilerin kopyalarını okur: ek amaç fonksiyonu çağrısı ve
+    ek rastgele sayı çekimi yoktur.
 """
 
 import numpy as np
+
+SPIRAL, HIER = 0, 1  # diag kayıtlarında operatör kodları
 from environment import WSNEnvironment
 
 def _can_evaluate(env, n=1):
@@ -44,7 +53,8 @@ def run_hwoa_gwa(env: WSNEnvironment,
                  p_init: float  = 0.8,   # erken iterasyonda spiral oranı
                  p_end: float   = 0.2,   # son iterasyonda spiral oranı
                  mode: str      = "full", # "full" | "spiral" | "hier"
-                 seed: int      = 0) -> dict:
+                 seed: int      = 0,
+                 diag=None) -> dict:
     """
     Returns
     -------
@@ -71,6 +81,9 @@ def run_hwoa_gwa(env: WSNEnvironment,
     beta_pos   = pbest[sorted_idx[1]].copy()
     delta_pos  = pbest[sorted_idx[2]].copy()
 
+    if diag is not None:
+        diag.on_init(X.copy(), fitness.copy(), alpha_f)
+
     history     = []
     last_improvement_iter = max_iter
 
@@ -80,6 +93,9 @@ def run_hwoa_gwa(env: WSNEnvironment,
 
         # Adaptif spiral olasılığı: başta yüksek (keşif), sonda düşük (sömürü)
         p_spiral = p_init - (p_init - p_end) * (it / max_iter)
+
+        # diag: gerçekten çalışan operatör, dalların içinde kaydedilir
+        ops = np.full(n_agents, -1, dtype=np.int8) if diag is not None else None
 
         new_X = X.copy()
         for i in range(n_agents):
@@ -93,6 +109,8 @@ def run_hwoa_gwa(env: WSNEnvironment,
                 new_X[i] = np.clip(
                     D * np.exp(b * l) * np.cos(2 * np.pi * l) + alpha_pos,
                     0, env.area_size)
+                if ops is not None:
+                    ops[i] = SPIRAL
 
             elif mode == "hier":
                 # ── Ablation: sadece GWA hiyerarşisi ─────────────────
@@ -103,6 +121,8 @@ def run_hwoa_gwa(env: WSNEnvironment,
                 X2 = beta_pos  - A2 * np.abs(C2 * beta_pos  - X[i])
                 X3 = delta_pos - A3 * np.abs(C3 * delta_pos - X[i])
                 new_X[i] = np.clip((X1+X2+X3)/3.0, 0, env.area_size)
+                if ops is not None:
+                    ops[i] = HIER
 
             else:
                 # ── Full hibrit ───────────────────────────────────────
@@ -113,6 +133,8 @@ def run_hwoa_gwa(env: WSNEnvironment,
                     new_X[i] = np.clip(
                         D * np.exp(b * l) * np.cos(2 * np.pi * l) + alpha_pos,
                         0, env.area_size)
+                    if ops is not None:
+                        ops[i] = SPIRAL
                 else:
                     # GWA doğrusal çekim → α/β/δ üçlüsünden yönlendirme
                     A1 = 2*a*rng.random(dim)-a;  C1 = 2*rng.random(dim)
@@ -122,12 +144,17 @@ def run_hwoa_gwa(env: WSNEnvironment,
                     X2 = beta_pos  - A2 * np.abs(C2 * beta_pos  - X[i])
                     X3 = delta_pos - A3 * np.abs(C3 * delta_pos - X[i])
                     new_X[i] = np.clip((X1+X2+X3)/3.0, 0, env.area_size)
+                    if ops is not None:
+                        ops[i] = HIER
 
         if not _can_evaluate(env, n_agents):
             break
+        X_prev  = X if diag is not None else None
         X       = new_X
         fitness = np.array([env.coverage_rate_vectorized(X[i].reshape(-1, 2))
                             for i in range(n_agents)])
+
+        pbest_f_prev = pbest_f.copy() if diag is not None else None
 
         # Personal best güncelle
         improved          = fitness > pbest_f
@@ -136,12 +163,19 @@ def run_hwoa_gwa(env: WSNEnvironment,
 
         # Liderlik hiyerarşisini taze tut
         sorted_idx = np.argsort(pbest_f)[::-1]
+        global_src = -1
         if pbest_f[sorted_idx[0]] > alpha_f:
             alpha_f     = pbest_f[sorted_idx[0]]
             alpha_pos   = pbest[sorted_idx[0]].copy()
             last_improvement_iter = it + 1
+            if diag is not None:
+                global_src = int(ops[sorted_idx[0]])
         beta_pos  = pbest[sorted_idx[1]].copy()
         delta_pos = pbest[sorted_idx[2]].copy()
+
+        if diag is not None:
+            diag.on_iter(it, p_spiral, ops.copy(), X_prev.copy(), X.copy(),
+                         fitness.copy(), pbest_f_prev, alpha_f, global_src)
 
         history.append(alpha_f * 100)
         if alpha_f >= 1.0:

@@ -1,0 +1,326 @@
+{
+  "gate": "G2",
+  "protocol": "v0.3",
+  "passed": true,
+  "note": "Pilot results are used only for code verification and are not part of any performance analysis.",
+  "zip_sha256": "28965848c11fe61dc15a2559cdf8c141d68d84dc4a53104f3856fe24b84d8f02",
+  "reference_csv_sha256": "5960005a4d6d3f76f6ef9e4d3921b79b8c751e940af571a6bbaf86df783095d7",
+  "changed_files_vs_zip": [
+    "algorithms/hwoa_gwa.py"
+  ],
+  "added_files": [
+    "algorithms/hwoa_gwa_nopb.py"
+  ],
+  "extra_files": [],
+  "revision_tree_hashes": {
+    "algorithms/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "algorithms/aco.py": "a1ef1a3cddaa6efd9d4317fa56c435aae3354b51500ca7d01eac9ad542726ebf",
+    "algorithms/csa.py": "bc1308b5a3416c51b73b41bf19f98f39a9251a85498efc1c026c6d49086c5c14",
+    "algorithms/gwa.py": "e12fc4145d0b916ae65ff3589d66fc3b70a4d179667cf021367bcc27dc8719e5",
+    "algorithms/hwoa_gwa.py": "675fec6cf1a597d598e83d402dd446bd1813d7fc140921aca3e1e4fbac7c20e1",
+    "algorithms/hwoa_gwa_nopb.py": "1860194df992c59d80862a79fb9122af782cf32fe804a9b444fab3e837e2a8f6",
+    "algorithms/hwsa_gwa.py": "2aeafb21e9f348a5ae63609f4b8383a7f51dcda621be3d9116f66c37be655843",
+    "algorithms/pso.py": "9784b800a4da743bd233bb4161f1f8a8db9fab81ec3f28017832b00c43948df3",
+    "algorithms/random_baseline.py": "2b2c92eea01b7ed68f07d9027e5dea86f7d32c77dc54951728c715b0bdb74cff",
+    "algorithms/woa.py": "a5ac47c00ea83c15ace776d6cc0615eefc77a52331dbe6ad48b652d300779c4f",
+    "algorithms/wsa.py": "139fe6a97117e21ecee3d8162d63be6f1784f39a19536d258824d3db4cb23652",
+    "environment.py": "4b846c1704aa261f034f2644e227fe685e7d70f27cf9eb1e1fafe7b5b31d2b23",
+    "statistical_experiment.py": "aaddd7170d7aebf606917363225baa3ce7882b360ef96dd0300bb0d794c0bf6c"
+  },
+  "versions": {
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5"
+  },
+  "checks": [
+    {
+      "config": "FULL",
+      "trial": 0,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true,
+      "ref_match_submitted": true
+    },
+    {
+      "config": "FULL",
+      "trial": 1,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true,
+      "ref_match_submitted": true
+    },
+    {
+      "config": "FULL",
+      "trial": 2,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true,
+      "ref_match_submitted": true
+    },
+    {
+      "config": "SPIRAL",
+      "trial": 0,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true,
+      "ref_match_submitted": true
+    },
+    {
+      "config": "SPIRAL",
+      "trial": 1,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true,
+      "ref_match_submitted": true
+    },
+    {
+      "config": "SPIRAL",
+      "trial": 2,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true,
+      "ref_match_submitted": true
+    },
+    {
+      "config": "HIER",
+      "trial": 0,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true,
+      "ref_match_submitted": true
+    },
+    {
+      "config": "HIER",
+      "trial": 1,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true,
+      "ref_match_submitted": true
+    },
+    {
+      "config": "HIER",
+      "trial": 2,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true,
+      "ref_match_submitted": true
+    },
+    {
+      "config": "CONST05",
+      "trial": 0,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true
+    },
+    {
+      "config": "CONST05",
+      "trial": 1,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true
+    },
+    {
+      "config": "CONST05",
+      "trial": 2,
+      "a_branch_matches_rng_sequence": true,
+      "b_25_evaluations_per_iteration": true,
+      "c_mode_ops": true,
+      "d_no_nan": true,
+      "e_hist_consistent": true,
+      "f_phen_time_measured": true
+    }
+  ],
+  "descriptive": {
+    "spiral_fraction_FULL": [
+      {
+        "bin": 0,
+        "n": 1875,
+        "spiral_frac": 0.7739,
+        "p_mean": 0.7711,
+        "inside_95": true
+      },
+      {
+        "bin": 1,
+        "n": 1875,
+        "spiral_frac": 0.6992,
+        "p_mean": 0.7108,
+        "inside_95": true
+      },
+      {
+        "bin": 2,
+        "n": 1875,
+        "spiral_frac": 0.6528,
+        "p_mean": 0.6506,
+        "inside_95": true
+      },
+      {
+        "bin": 3,
+        "n": 1875,
+        "spiral_frac": 0.5909,
+        "p_mean": 0.5904,
+        "inside_95": true
+      },
+      {
+        "bin": 4,
+        "n": 1875,
+        "spiral_frac": 0.5355,
+        "p_mean": 0.5301,
+        "inside_95": true
+      },
+      {
+        "bin": 5,
+        "n": 1875,
+        "spiral_frac": 0.4608,
+        "p_mean": 0.4699,
+        "inside_95": true
+      },
+      {
+        "bin": 6,
+        "n": 1875,
+        "spiral_frac": 0.4203,
+        "p_mean": 0.4096,
+        "inside_95": true
+      },
+      {
+        "bin": 7,
+        "n": 1875,
+        "spiral_frac": 0.3669,
+        "p_mean": 0.3494,
+        "inside_95": true
+      },
+      {
+        "bin": 8,
+        "n": 1875,
+        "spiral_frac": 0.3045,
+        "p_mean": 0.2892,
+        "inside_95": true
+      },
+      {
+        "bin": 9,
+        "n": 1800,
+        "spiral_frac": 0.2239,
+        "p_mean": 0.2301,
+        "inside_95": true
+      }
+    ],
+    "spiral_fraction_CONST05": [
+      {
+        "bin": 0,
+        "n": 1875,
+        "spiral_frac": 0.5093,
+        "p_mean": 0.5,
+        "inside_95": true
+      },
+      {
+        "bin": 1,
+        "n": 1875,
+        "spiral_frac": 0.4987,
+        "p_mean": 0.5,
+        "inside_95": true
+      },
+      {
+        "bin": 2,
+        "n": 1875,
+        "spiral_frac": 0.5216,
+        "p_mean": 0.5,
+        "inside_95": true
+      },
+      {
+        "bin": 3,
+        "n": 1875,
+        "spiral_frac": 0.5147,
+        "p_mean": 0.5,
+        "inside_95": true
+      },
+      {
+        "bin": 4,
+        "n": 1875,
+        "spiral_frac": 0.5061,
+        "p_mean": 0.5,
+        "inside_95": true
+      },
+      {
+        "bin": 5,
+        "n": 1875,
+        "spiral_frac": 0.4949,
+        "p_mean": 0.5,
+        "inside_95": true
+      },
+      {
+        "bin": 6,
+        "n": 1875,
+        "spiral_frac": 0.4992,
+        "p_mean": 0.5,
+        "inside_95": true
+      },
+      {
+        "bin": 7,
+        "n": 1875,
+        "spiral_frac": 0.4923,
+        "p_mean": 0.5,
+        "inside_95": true
+      },
+      {
+        "bin": 8,
+        "n": 1875,
+        "spiral_frac": 0.4869,
+        "p_mean": 0.5,
+        "inside_95": true
+      },
+      {
+        "bin": 9,
+        "n": 1800,
+        "spiral_frac": 0.5111,
+        "p_mean": 0.5,
+        "inside_95": true
+      }
+    ],
+    "runtime_s_mean": {
+      "FULL": 4.712,
+      "SPIRAL": 4.619,
+      "HIER": 4.456,
+      "CONST05": 4.775
+    },
+    "phenotypic_time_share": {
+      "FULL": 0.447,
+      "SPIRAL": 0.466,
+      "HIER": 0.45,
+      "CONST05": 0.451
+    },
+    "Dg_init_m (expected ~40 for uniform init)": 40.13
+  },
+  "wall_time_s": 55.8
+}

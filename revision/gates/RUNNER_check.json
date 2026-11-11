@@ -1,0 +1,811 @@
+{
+  "gate": "RUNNER",
+  "passed": true,
+  "mandatory_criteria": [
+    "equals_submitted_runner",
+    "equals_submitted_mGWA",
+    "p_passed",
+    "nopb_fn",
+    "equals_FULL",
+    "equals_CONST05",
+    "nfe_aligned",
+    "history_is_best_so_far"
+  ],
+  "descriptive_criteria": [
+    "differs_from_FULL"
+  ],
+  "zip_sha256": "28965848c11fe61dc15a2559cdf8c141d68d84dc4a53104f3856fe24b84d8f02",
+  "added_files": [
+    "algorithms/hwoa_gwa_nopb.py"
+  ],
+  "runner_sha256": "c7a5050e11a86d1f80449c6d70d96ff4eeb9ec6181e83f9aae936401f52a1afd",
+  "versions": {
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5"
+  },
+  "note": "Runner dispatch check; results are used only for code verification.",
+  "checks": [
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "Random",
+      "fn": "algorithms.random_baseline.run_random_baseline",
+      "kwargs": {
+        "n_particles": 25,
+        "max_iter": 250
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "PSO",
+      "fn": "algorithms.pso.run_pso",
+      "kwargs": {
+        "n_particles": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "cACO",
+      "fn": "algorithms.aco.run_aco",
+      "kwargs": {
+        "n_ants": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "mWOA",
+      "fn": "algorithms.woa.run_woa",
+      "kwargs": {
+        "n_whales": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "mGWA",
+      "fn": "algorithms.gwa.run_gwa",
+      "kwargs": {
+        "n_wolves": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "CSA",
+      "fn": "algorithms.csa.run_csa",
+      "kwargs": {
+        "n_nests": 25,
+        "max_iter": 889
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "FULL",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "SPIRAL",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "mode": "spiral"
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "HIER",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "mode": "hier"
+      },
+      "equals_submitted_runner": true,
+      "equals_submitted_mGWA": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "CONST05",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.5,
+        "p_end": 0.5
+      },
+      "p_passed": true,
+      "differs_from_FULL": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "NOPB",
+      "fn": "algorithms.hwoa_gwa_nopb.run_hwoa_gwa_nopb",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249
+      },
+      "nopb_fn": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "G(0.8,0.2)",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.8,
+        "p_end": 0.2
+      },
+      "equals_FULL": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "G(0.5,0.5)",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.5,
+        "p_end": 0.5
+      },
+      "equals_CONST05": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "Random",
+      "fn": "algorithms.random_baseline.run_random_baseline",
+      "kwargs": {
+        "n_particles": 25,
+        "max_iter": 250
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "PSO",
+      "fn": "algorithms.pso.run_pso",
+      "kwargs": {
+        "n_particles": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "cACO",
+      "fn": "algorithms.aco.run_aco",
+      "kwargs": {
+        "n_ants": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "mWOA",
+      "fn": "algorithms.woa.run_woa",
+      "kwargs": {
+        "n_whales": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "mGWA",
+      "fn": "algorithms.gwa.run_gwa",
+      "kwargs": {
+        "n_wolves": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "CSA",
+      "fn": "algorithms.csa.run_csa",
+      "kwargs": {
+        "n_nests": 25,
+        "max_iter": 889
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "FULL",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "SPIRAL",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "mode": "spiral"
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "HIER",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "mode": "hier"
+      },
+      "equals_submitted_runner": true,
+      "equals_submitted_mGWA": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "CONST05",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.5,
+        "p_end": 0.5
+      },
+      "p_passed": true,
+      "differs_from_FULL": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "NOPB",
+      "fn": "algorithms.hwoa_gwa_nopb.run_hwoa_gwa_nopb",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249
+      },
+      "nopb_fn": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "G(0.8,0.2)",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.8,
+        "p_end": 0.2
+      },
+      "equals_FULL": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S2",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "G(0.5,0.5)",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.5,
+        "p_end": 0.5
+      },
+      "equals_CONST05": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "Random",
+      "fn": "algorithms.random_baseline.run_random_baseline",
+      "kwargs": {
+        "n_particles": 25,
+        "max_iter": 250
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "PSO",
+      "fn": "algorithms.pso.run_pso",
+      "kwargs": {
+        "n_particles": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "cACO",
+      "fn": "algorithms.aco.run_aco",
+      "kwargs": {
+        "n_ants": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "mWOA",
+      "fn": "algorithms.woa.run_woa",
+      "kwargs": {
+        "n_whales": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "mGWA",
+      "fn": "algorithms.gwa.run_gwa",
+      "kwargs": {
+        "n_wolves": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "CSA",
+      "fn": "algorithms.csa.run_csa",
+      "kwargs": {
+        "n_nests": 25,
+        "max_iter": 889
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "FULL",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "SPIRAL",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "mode": "spiral"
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "HIER",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "mode": "hier"
+      },
+      "equals_submitted_runner": true,
+      "equals_submitted_mGWA": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "CONST05",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.5,
+        "p_end": 0.5
+      },
+      "p_passed": true,
+      "differs_from_FULL": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "NOPB",
+      "fn": "algorithms.hwoa_gwa_nopb.run_hwoa_gwa_nopb",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249
+      },
+      "nopb_fn": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "G(0.8,0.2)",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.8,
+        "p_end": 0.2
+      },
+      "equals_FULL": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S3",
+      "env_seed": 42,
+      "trial": 0,
+      "method": "G(0.5,0.5)",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.5,
+        "p_end": 0.5
+      },
+      "equals_CONST05": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "Random",
+      "fn": "algorithms.random_baseline.run_random_baseline",
+      "kwargs": {
+        "n_particles": 25,
+        "max_iter": 250
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "PSO",
+      "fn": "algorithms.pso.run_pso",
+      "kwargs": {
+        "n_particles": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "cACO",
+      "fn": "algorithms.aco.run_aco",
+      "kwargs": {
+        "n_ants": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "mWOA",
+      "fn": "algorithms.woa.run_woa",
+      "kwargs": {
+        "n_whales": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "mGWA",
+      "fn": "algorithms.gwa.run_gwa",
+      "kwargs": {
+        "n_wolves": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "CSA",
+      "fn": "algorithms.csa.run_csa",
+      "kwargs": {
+        "n_nests": 25,
+        "max_iter": 889
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "FULL",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "SPIRAL",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "mode": "spiral"
+      },
+      "equals_submitted_runner": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "HIER",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "mode": "hier"
+      },
+      "equals_submitted_runner": true,
+      "equals_submitted_mGWA": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "CONST05",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.5,
+        "p_end": 0.5
+      },
+      "p_passed": true,
+      "differs_from_FULL": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "NOPB",
+      "fn": "algorithms.hwoa_gwa_nopb.run_hwoa_gwa_nopb",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249
+      },
+      "nopb_fn": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "G(0.8,0.2)",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.8,
+        "p_end": 0.2
+      },
+      "equals_FULL": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    },
+    {
+      "sc": "S1",
+      "env_seed": 17,
+      "trial": 1,
+      "method": "G(0.5,0.5)",
+      "fn": "algorithms.hwoa_gwa.run_hwoa_gwa",
+      "kwargs": {
+        "n_agents": 25,
+        "max_iter": 249,
+        "p_init": 0.5,
+        "p_end": 0.5
+      },
+      "equals_CONST05": true,
+      "nfe_aligned": true,
+      "history_is_best_so_far": true
+    }
+  ],
+  "rejections": {
+    "{'method': 'PSO2'}": "rejected: ValueError: unknown method: 'PSO2'",
+    "{'method': 'G(0.3,0.5)'}": "rejected: ValueError: grid cell outside protocol grid: G(0.3,0.5)",
+    "{'method': 'HWOA-GWA'}": "rejected: ValueError: unknown method: 'HWOA-GWA'",
+    "{'method': 'PSO', 'diag': True}": "rejected: ValueError: diagnostics are defined only for HWOA-GWA variants, not PSO",
+    "{'algo': 'pso'}": "rejected: ValueError: unknown method: 'pso'"
+  },
+  "executions": {
+    "submitted_runner": 36,
+    "revision_runner": 52
+  },
+  "wall_time_s": 143.4
+}
