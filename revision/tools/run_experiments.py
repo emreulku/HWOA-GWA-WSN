@@ -43,7 +43,7 @@ TRIALS = tuple(range(30))
 GRID = [f"G({a},{b})" for a in (0.2, 0.5, 0.8) for b in (0.2, 0.5, 0.8)]
 TEN = ["Random", "PSO", "cACO", "mWOA", "mGWA", "CSA", "FULL", "SPIRAL", "CONST05", "NOPB"]
 KEY_FIELDS = ("exp", "method", "sc", "env_seed", "trial", "role")
-EXPECTED = {"E1": 2430, "E2": 540, "E3": 270, "E4": 300, "E5": 9000}
+EXPECTED = {"E1": 2430, "E2": 540, "E3": 270, "E4": 300, "E5": 9000, "E5b": 900}
 
 
 def blas_status():
@@ -79,6 +79,8 @@ def matrix(exp, smoke=False):
         add(TEN, (42,), range(10), False, role="measured")
     elif exp == "E5":
         add(TEN, NEW_ENVS, TRIALS, False)
+    elif exp == "E5b":                       # protocol addendum v1.0-d2 (E5b)
+        add(["G(0.8,0.8)"], NEW_ENVS, TRIALS, False)
     else:
         raise SystemExit(f"unknown experiment {exp} (E6 is optional and not implemented in v1.0)")
     keys = [s["key"] for s in S]
