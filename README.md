@@ -1,179 +1,61 @@
-# HWOA-GWA: Adaptive Spiral–Hierarchical Operator Switching for WSN Target Coverage
+# HWOA-GWA: Spiral–Hierarchical Operator Selection for WSN Target Coverage
 
-This repository contains the source code, experimental results, and
-figures accompanying the paper:
+Code, protocols and analysis scripts for the manuscript
+"Spiral–Hierarchical Operator Selection for Target Coverage in Wireless Sensor Networks: A Component-Level Evaluation" (Cluster Computing, under revision).
 
 ## Overview
 
-HWOA-GWA is a hybrid metaheuristic that coordinates two complementary
-search operators for mobile wireless sensor network (WSN) target coverage:
+HWOA-GWA is a population-based optimizer for static target coverage placement in a two-dimensional region with a binary disk sensing model. Each candidate keeps a personal-best memory. At every iteration, each candidate draws one of two existing operators at random:
 
-- **Spiral operator** (from the Whale Optimization Algorithm, WOA):
-  nonlinear movement around the current best solution.
-- **Hierarchical operator** (from the Grey Wolf Optimizer, GWO):
-  guidance from the top-three ranked solutions (α, β, δ).
+- **Spiral operator** (Whale Optimization Algorithm, WOA): spiral move around the best-so-far solution.
+- **Hierarchical operator** (Grey Wolf Optimizer, GWO): guidance from the three best personal bests (α, β, δ).
 
-The probability of selecting the spiral operator decreases linearly
-over the optimization process:
+The spiral-selection probability follows a fixed linear schedule:
 
 ```
-p_s(t) = p_init - (p_init - p_end) * t / T
-p_init = 0.8,  p_end = 0.2
+p_s(t) = 0.8 - 0.6 * t / T,   t = 0, ..., T-1
 ```
 
-This adaptive schedule promotes exploration early and exploitation later.
+The schedule does not use feedback from the search; it is deterministic parameter control, not adaptive control.
 
----
+## Versions
 
-## Repository Structure
-
-```
-HWOA-GWA-WSN/
-├── src/
-│   ├── environment.py           # WSN environment (Boolean disk coverage)
-│   ├── statistical_experiment.py # Main experiment runner
-│   └── algorithms/
-│       ├── hwoa_gwa.py          # Proposed method (HWOA-GWA)
-│       ├── pso.py               # Particle Swarm Optimization
-│       ├── aco.py               # Continuous ACO variant (cACO)
-│       ├── woa.py               # Modified WOA (mWOA)
-│       ├── gwa.py               # Modified GWA (mGWA)
-│       ├── csa.py               # Cuckoo Search Algorithm
-│       └── random_baseline.py   # Random Search baseline
-│
-├── results/
-│   ├── benchmark_results/       # Coverage, displacement, runtime (90 runs each)
-│   │   ├── results_long.csv     # Full long-format dataset (primary)
-│   │   ├── stats_pooled.csv     # Pooled summary statistics
-│   │   └── stats_by_seed.csv    # Per-instance statistics
-│   ├── statistical_tests/
-│   │   ├── friedman_results.csv # Friedman omnibus test
-│   │   ├── wilcoxon_pairwise.csv # Paired Wilcoxon + Holm correction
-│   │   └── levene_variance.csv  # Brown-Forsythe variance test
-│   ├── ablation/
-│   │   └── ablation_results.csv # Full vs spiral-only vs hierarchy-only
-│   └── run_manifest.json        # Experiment metadata
-│
-├── figures/                     # All generated figures
-├── scripts/                     # Utility scripts
-├── requirements.txt
-└── README.md
-```
-
----
-
-## Experimental Design
-
-| Parameter | Value |
-|---|---|
-| Deployment area | 100 × 100 m² |
-| Sensing radius | r = 5 m |
-| Scenario S1 | 100 sensors, 75 targets (ratio 1.33) |
-| Scenario S2 | 50 sensors, 75 targets (ratio 0.67) |
-| Scenario S3 | 200 sensors, 120 targets (ratio 1.67) |
-| Population size | 25 |
-| Max NFE budget | 6,250 (initialization included) |
-| Environment seeds | 42, 17, 99 |
-| Stochastic trials | 30 per instance |
-| **Runs per method/scenario** | **3 × 30 = 90** |
-
-All algorithms operate under the **same hard NFE budget**. Only complete
-generations are executed; partial updates exceeding the budget are not initiated.
-
----
-
-## Reproducing the Experiments
-
-### Requirements
-
-```bash
-pip install -r requirements.txt
-```
-
-### Run all experiments
-
-```bash
-cd src
-python statistical_experiment.py
-```
-
-Output files are written to `/mnt/user-data/outputs/` by default.
-Edit the `OUTDIR` variable in `statistical_experiment.py` to change
-the output directory.
-
-**Estimated runtime:** ~2 hours on a 2-core machine.
-
-### Algorithms
-
-| Code label | Full name | Notes |
+| Version | Identifier | Content |
 |---|---|---|
-| `Random` | Random Search Baseline | Equal NFE budget |
-| `PSO` | Particle Swarm Optimization | Full-random init, velocity clamp |
-| `cACO` | Continuous ACO Variant | Not classical graph ACO |
-| `mWOA` | Modified WOA | + greedy personal-best memory |
-| `mGWA` | Modified GWA | + greedy personal-best memory |
-| `CSA` | Cuckoo Search Algorithm | Lévy flights |
-| `HWOA-GWA` | **Proposed method** | Adaptive spiral–hierarchical switching |
+| Submitted manuscript | tag `v1.0-submission`, commit `3e15fcb` | Algorithms and the original experiment runner |
+| Revision experiments E1–E5 | commit `a1193e8` | Diagnostics, NOPB variant, runner, statistics module, protocol v1.0.1 |
+| Revision experiment E5b | commit `24acbdb` | Pre-registered G(0.8,0.8) − FULL test (protocol addendum) |
+| Revision analysis | tag and release `v2.0-revision`, commit `2f89232` | Analysis v3/v4, manuscript tables and figures, geometric audit |
+| Protocol deviation record | commit `60a9078` | `revision/protocol/` (Turkish original and [English translation](https://github.com/emreulku/HWOA-GWA-WSN/blob/60a907844dbc2e103772a686056841ff690d683f/revision/protocol/Protocol_v1.0.1_Deviation_Record_d3_EN.md)) |
 
----
+## Repository layout
 
-## Key Results
-
-| Scenario | Best method | HWOA-GWA | vs mWOA | vs mGWA |
-|---|---|---|---|---|
-| S1 | cACO (98.13%) | 86.56% | +3.24%* | +3.12%* |
-| S2 | cACO (83.30%) | 67.33% | +3.48%* | +1.60 ns |
-| S3 | cACO (99.91%) | 96.45% | +1.06%* | +4.55%* |
-
-*Holm-adjusted Wilcoxon p < 0.05. ns = not significant.
-
-HWOA-GWA substantially reduces mGWA run-to-run variability
-(CV: 9.67% → 5.58% in S1; 15.56% → 7.47% in S2; 5.10% → 2.03% in S3;
-Brown-Forsythe p < 0.001 in all scenarios).
-
----
-
-## Citation
-
-If you use this code or data, please cite:
-
-```bibtex
-@article{hwoa_gwa_2025,
-  author  = {[Authors]},
-  title   = {Adaptive Spiral--Hierarchical Operator Switching for
-             Target Coverage Optimization in Wireless Sensor Networks},
-  journal = {Cluster Computing},
-  year    = {2025},
-  doi     = {[DOI]}
-}
+```
+src/                     Environment, algorithm implementations, original experiment runner
+revision/protocol/       Experiment protocol v1.0 / v1.0.1, E5b addendum, deviation record d3
+revision/tools/          Revision experiment runner, statistics module and checks
+revision/gates/          Pre-run check reports
+revision/analysis_v3/    Statistical analysis, tables and figures (revision)
+revision/analysis_v4/    Manuscript tables, English figures, Gap table, S2 full-coverage witness
+results/, figures/       Outputs of the submitted version (v1.0); superseded by the revision
 ```
 
----
+`results/` and `figures/` are kept for traceability of the submitted version. They contain analyses (Friedman, Brown–Forsythe, coefficient of variation, S1-only ablation) that are not used in the revised manuscript.
 
-## License
+## Revision data
 
-MIT License — see `LICENSE` for details.
+Raw data are not stored in git. They are attached to release [`v2.0-revision`](https://github.com/emreulku/HWOA-GWA-WSN/releases/tag/v2.0-revision):
 
-## Revision (Cluster Computing, major revision)
-
-The submitted version is tag `v1.0-submission` (commit `3e15fcb`). The revision work lives on the `revision` branch and in release `v2.0-revision`.
-
-| Layer | Location | Commit |
-|---|---|---|
-| Experiment code E1–E5 (diagnostics, NOPB variant, runner, statistics, protocol v1.0.1) | `revision/tools/`, `revision/protocol/` | `a1193e8` |
-| Experiment code E5b (pre-registered G(0.8,0.8) − FULL test) | `revision/tools/`, `revision/protocol/` | `24acbdb` |
-| Analysis v3 (statistics, tables, figures) | `revision/analysis_v3/` | tag `v2.0-revision` |
-| Analysis v4 (manuscript tables, English figures, Gap, S2 full-coverage witness) | `revision/analysis_v4/` | tag `v2.0-revision` |
-
-Raw data are not stored in git. They are attached to release `v2.0-revision`:
-
-- `HWOA_revizyon_nihai_arsiv.zip`: raw runs, histories and diagnostics of E1–E5 and E5b, manifests, analysis-v3 scripts and outputs, `SHA256SUMS.txt`
-- `HWOA_revizyon_analysis_v4.zip`: analysis-v4 scripts and outputs (Section 6 tables, Figures 3–7, Gap table, S2 witness)
+- `HWOA_revizyon_nihai_arsiv.zip`: raw runs and convergence histories (E1–E5, E5b), operator diagnostics (E1–E3), manifests, analysis-v3 scripts and outputs, `SHA256SUMS.txt`
+- `HWOA_revizyon_analysis_v4.zip`: analysis-v4 scripts and outputs (manuscript tables, Figures 3–7, Gap table, S2 witness)
 - `RELEASE_SHA256SUMS.txt`: SHA-256 of both archives
 
-To reproduce:
+Install the analysis environment first (`revision/requirements-revision.txt`; NetworkX is needed only for the geometric audit). The commands use `python -I`, which ignores user-site packages, so install the packages into the environment of the Python you run.
+
+To verify and reproduce:
 
 ```
+pip install -r revision/requirements-revision.txt
 sha256sum -c RELEASE_SHA256SUMS.txt
 unzip HWOA_revizyon_nihai_arsiv.zip && cd HWOA_revizyon_nihai_arsiv
 python -I verify_package.py      # raw data against manifest hashes and run counts
@@ -181,3 +63,52 @@ python -I run_all.py             # regenerates analysis-v3 outputs and compares 
 ```
 
 The analysis-v4 commands are listed in `revision/analysis_v4/README.md`. The scripts in `revision/analysis_v3/` and `revision/analysis_v4/` are byte-identical to the copies inside the two archives.
+
+## Experimental setting (revision)
+
+| Item | Value |
+|---|---|
+| Region, sensing radius | 100 × 100 m, r = 5 m |
+| Scenarios (sensors / targets) | S1 100/75, S2 50/75, S3 200/120 |
+| Evaluation limit | 6,250 objective-function evaluations, actual counts reported |
+| Exploratory instances (E1–E3) | environment seeds 42, 17, 99 |
+| Confirmatory instances (E5, E5b) | environment seeds 1001–1010 |
+| Runs | 30 per instance and method |
+| Compared methods | Random Search, PSO, cACO, mWOA, mGWA, CSA |
+
+All instances have a known optimum: full coverage is attainable by a simple geometric construction (S1/S3 because N ≥ M; S2 by the witness in `revision/analysis_v4/`).
+
+## Original submission snapshot (v1.0)
+
+The text, results and figures of the originally submitted manuscript correspond to tag `v1.0-submission`. They are superseded by the revision and are kept only for traceability.
+
+```
+pip install -r requirements.txt
+cd src
+python statistical_experiment.py
+```
+
+Output location is set by `OUTDIR` in `src/statistical_experiment.py`.
+
+## Notes on source comments
+
+Some comments in the frozen source files predate the revision and are kept unchanged so that the experiment commits stay byte-identical. In particular, comments in `src/algorithms/hwoa_gwa.py` describe the schedule as adaptive and as exploration-to-exploitation; the revised manuscript describes it as a deterministic schedule and does not make that claim. The comment in `src/algorithms/aco.py` that refers to a sensitivity analysis in "paper Section 5" refers to no analysis in the revised manuscript; the cACO step size was retained from the submitted implementation without tuning.
+
+## Citation
+
+Please cite the article once published. Until then:
+
+```bibtex
+@misc{hwoa_gwa_code,
+  author = {Bayat, Gozde and Ulku, Eyup Emre and Dogan, Buket and Ulku, Ilayda},
+  title  = {{HWOA-GWA}: Code and data for "Spiral--Hierarchical Operator Selection
+            for Target Coverage in Wireless Sensor Networks: A Component-Level Evaluation"},
+  year   = {2026},
+  note   = {Release v2.0-revision},
+  url    = {https://github.com/emreulku/HWOA-GWA-WSN}
+}
+```
+
+## License
+
+MIT License — see `LICENSE` for details.
