@@ -153,3 +153,31 @@ If you use this code or data, please cite:
 ## License
 
 MIT License — see `LICENSE` for details.
+
+## Revision (Cluster Computing, major revision)
+
+The submitted version is tag `v1.0-submission` (commit `3e15fcb`). The revision work lives on the `revision` branch and in release `v2.0-revision`.
+
+| Layer | Location | Commit |
+|---|---|---|
+| Experiment code E1–E5 (diagnostics, NOPB variant, runner, statistics, protocol v1.0.1) | `revision/tools/`, `revision/protocol/` | `a1193e8` |
+| Experiment code E5b (pre-registered G(0.8,0.8) − FULL test) | `revision/tools/`, `revision/protocol/` | `24acbdb` |
+| Analysis v3 (statistics, tables, figures) | `revision/analysis_v3/` | tag `v2.0-revision` |
+| Analysis v4 (manuscript tables, English figures, Gap, S2 full-coverage witness) | `revision/analysis_v4/` | tag `v2.0-revision` |
+
+Raw data are not stored in git. They are attached to release `v2.0-revision`:
+
+- `HWOA_revizyon_nihai_arsiv.zip`: raw runs, histories and diagnostics of E1–E5 and E5b, manifests, analysis-v3 scripts and outputs, `SHA256SUMS.txt`
+- `HWOA_revizyon_analysis_v4.zip`: analysis-v4 scripts and outputs (Section 6 tables, Figures 3–7, Gap table, S2 witness)
+- `RELEASE_SHA256SUMS.txt`: SHA-256 of both archives
+
+To reproduce:
+
+```
+sha256sum -c RELEASE_SHA256SUMS.txt
+unzip HWOA_revizyon_nihai_arsiv.zip && cd HWOA_revizyon_nihai_arsiv
+python -I verify_package.py      # raw data against manifest hashes and run counts
+python -I run_all.py             # regenerates analysis-v3 outputs and compares them byte for byte
+```
+
+The analysis-v4 commands are listed in `revision/analysis_v4/README.md`. The scripts in `revision/analysis_v3/` and `revision/analysis_v4/` are byte-identical to the copies inside the two archives.
